@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Cambiar Contraseña</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       
+        <link href="Clave/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="Clave/css/util.css" rel="stylesheet" type="text/css"/>
+        <link href="Clave/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="Clave/fonts/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="Clave/fonts/iconic/css/material-design-iconic-font.css" rel="stylesheet" type="text/css"/>
+        <link href="Clave/fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet" type="text/css"/>
+        <!--===============================================================================================-->
+        <link href="Clave/vendor/animate/animate.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+ 
+        <div class="limiter">
+            <div class="container-login100" style="background-image: url('Clave/images/bg-02.jpg');">
+                <div class="wrap-login100">
+                    <form id="cambioClaveForm" class="login100-form validate-form">
+                        <span class="login100-form-logo">
+                            <!-- <i class="zmdi zmdi-landscape"></i> -->
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        </span>
+                        <span class="login100-form-title p-b-34 p-t-27">
+                            Cambia tu Contraseña
+                        </span>
+                        <!-- CAJAS DE TEXTO -->
+                        <div class="wrap-input100 validate-input" data-validate = "Ingresa la Actual Contraseña">
+                            <input class="input100" id="passActual" type="password" name="passActual" placeholder="Contraseña Actual">
+                            <span class="focus-input100" data-placeholder="&#xf150;"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Nueva Contraseña">
+                            <input class="input100" id="nuevaClave" type="password" name="nuevaClave" placeholder="Nueva Contraseña">
+                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Confirma la Nueva Contraseña">
+                            <input class="input100" id="confirClave" type="password" name="confirClave" placeholder="Confirma la Nueva Contraseña">
+                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                        </div>
+                        <!-- FIN DE LAS CAJAS DE TEXTO -->
+
+                        <div class="container-login100-form-btn">
+                            <!-- <button type="button" class="login100-form-btn" id="ConfirmarCambio">
+                                    Cambiar Contraseña
+                            </button> -->
+                            <input class="login100-form-btn" type="submit" value="Cambiar Contraseña">
+                        </div>
+
+                        <div class="text-center p-t-90">
+                            <a class="txt1 text-white" >
+                                El mejor entretenimiento para adultos 
+                            </a>
+                            <br>
+                            <a class="txt1 text-white" >
+                                Discipulos de Chinga 
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="mensaje"></div>
+        <script>
+            $(document).ready(function () {
+                $('#cambioClaveForm').submit(function (event) {
+                    event.preventDefault();
+
+                    // Obtener los valores del formulario
+                    var passActual = $('#passActual').val();
+                    var nuevaClave = $('#nuevaClave').val();
+                    var confirClave = $('#confirClave').val();
+
+                    // Enviar los datos al servlet
+                    $.post('clave', {
+                        passActual: passActual,
+                        nuevaClave: nuevaClave,
+                        confirClave: confirClave
+                    }, function (data) {
+                        // Procesar la respuesta del servlet
+                        var resultado = JSON.parse(data);
+
+                        if (resultado.resultado === 'ok') {
+                            //comprueba si la cooikie esta
+                            const token = getCookie("token");
+                            console.log(token);
+
+                            // Mostrar un mensaje de alerta
+                            alert('Cambio de contraseña exitoso');
+                            // Redireccionar a index.html
+                          setTimeout(function () {
+                                    window.location.href = "index.html";
+                                }, 20000);
+                        } else if (resultado.resultado === 'error') {
+                            $('#mensaje').text(resultado.mensaje);
+                        }
+
+                    });
+                });
+            });
+            function getCookie(name) {
+                const nameEQ = name + "=";
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i];
+                    while (cookie.charAt(0) === ' ') {
+                        cookie = cookie.substring(1, cookie.length);
+                    }
+                    if (cookie.indexOf(nameEQ) === 0) {
+                        return cookie.substring(nameEQ.length, cookie.length);
+                    }
+                }
+                return null;
+            }
+        </script>
+
+        <div id="dropDownSelect1"></div>
+
+        <!--===============================================================================================-->
+        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/bootstrap/js/popper.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/daterangepicker/moment.min.js"></script>
+        <script src="vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/countdowntime/countdowntime.js"></script>
+        <!--===============================================================================================-->
+        <script src="js/main.js"></script>
+
+    </body>
+</html>

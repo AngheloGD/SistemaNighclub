@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>La Rosa Roja</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="http://localhost/SistemaNightclub/src/main/webapp/basedatos.php">Reporte Cita</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="acerca.html">Acerca de Nosotros</a></li>-->
+                        <!--<li class="nav-item"><a class="nav-link" href="Contraseña.html">Cambiar Contraseña</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="Registro.jsp">Separar una cita</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="listado.jsp">Vista de Usuarios</a></li>-->
+                        <!-- <li class="nav-item"><a class="nav-link" href="trabaja.html">Trabaja con nosotros</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="Informacion.html">Las Cariñosas</a></li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <span id="usernameSpan"></span>
+                                </span>
+                                <img class="img-profile rounded-circle" src="assets/img/programador (1).png">
+
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item"  href="listado.jsp"">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"> </i>
+                                    Perfil
+                                </a>
+                                <a class ="dropdown-item" href="Contraseña.html">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cambiar contraseña
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="index.html">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Cerrar Sesion
+                                    </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <!--<div class="masthead-subheading">La Rosa Roja</div>-->
+                <div class="masthead-heading text-uppercase">Te presentamos la mejor experiencia de diversion para adultos.</div>
+                <!-- <a class="btn btn-primary btn-xl text-uppercase" href="Index.html">Iniciar sesion</a>
+                 <a class="btn btn-primary btn-xl text-uppercase" href="registro.html">Registrarme</a>-->
+            </div>
+        </header>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Obtener el nombre de usuario almacenado en LocalStorage mas na
+                var username = localStorage.getItem('username');
+
+                // Verificar si se ha iniciado sesión y si se ha obtenido el nombre de usuario xd
+                if (username) {
+                    // Insertar el nombre de usuario en el lugar deseado
+                    $("#usernameSpan").text(username);
+                }
+            });
+        </script>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Servicios</h2>
+                    <h3 class="section-subheading text-muted">Ofrecemos diferentes servicios para asegurar tu entretenimiento dentro de este club.</h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Table Dance</h4>
+                        <p class="text-muted">La vieja clasica que no necesita introduccion, disponible con tan solo adquirir tu entrada al establecimiento, a nuestras chicas no les molestaria una propina extra ;) .</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Masajes Tantricos</h4>
+                        <p class="text-muted">Si deseas relajarte con una de nuestras especialistas del arte corporal, puedes hacerlo aqui, la relajacion esta garantizada.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Bar</h4>
+                        <p class="text-muted">Si deseas relajarte con unos vasos de liquido vital, tenemos la mejor seleccion de bebidas alcoholicas y/o no alcoholicas a tu disposicion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About-->
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Historia</h2>
+                    <h3 class="section-subheading text-muted">Una pequeña muestra de nuestro origen.</h3>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>23/10/2023</h4>
+                                <h4 class="subheading">PUPILOS DE LORD CHINGA</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Bueno este proyecto llega Gracias a chaky, dire al INGENIERO CHINGAGOD, que Gracias a el le ofrecemos un servicio 100% disfrutable</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>26/10/2023</h4>
+                                <h4 class="subheading">La Travesia inicia</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Los integrantes se pusieron de acuerdo para poder emprender esta labor</p></div>
+                    </li>
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>27/10/2023</h4>
+                                <h4 class="subheading">Tortura</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">El dia sabado con s de sangre se hizo notar en la cara de los integrantes, pero aun seguian con la frente en alto para seguir peleando por esa nota aprobatoria</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>30/10/2023</h4>
+                                <h4 class="subheading">Demostracion</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Llegando a clases con la determinacion en alto, se ponen a prueba frente al ingeniero.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>
+                                Apruebenos
+                                <br />
+                                Pe
+                                <br />
+                                Inge
+                            </h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Nuestro equipo</h2>
+                    <h3 class="section-subheading text-muted">Estas personas estuvieron presente en el desarrollo de esta pagina:</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/Guerrero.jpg" alt="..." />
+                            <h4>Guerrero Diaz, Anghelo</h4>
+                            <p class="text-muted">Chino</p>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/AngheloGD" aria-label="Guerrero Diaz Facebook"><i class="fab fa-twitter"></i></a>-->
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/AngheloGD" aria-label="Guerrero Diaz Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/Haro.jpg" alt="..." />
+                            <h4>Haro Grados, Marco</h4>
+                            <p class="text-muted">La beba</p>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/markanthony.harogrados" aria-label="Haro Grados Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
+                        </div>
+                    </div> 
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Lino Morales, Alonso</h4>
+                            <p class="text-muted">La beba 3</p>
+                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Jesus Prieto</h4>
+                            <p class="text-muted">La beba 7</p>
+                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Brayan</h4>
+                            <p class="text-muted">La beba 5</p>
+                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Adrian Chavez</h4>
+                            <p class="text-muted">La beba 6</p>
+                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Erik</h4>
+                            <p class="text-muted">La beba 4</p>
+                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Bueno este trabajo fue hecho con sudor, sangre y horas sin dormir.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Ingenieria &copy; Equipo de Cripto II 2023</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="Politicas.html">Privacy Policy</a>
+                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

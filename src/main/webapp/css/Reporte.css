@@ -1,0 +1,137 @@
+     #footer {
+                display: none;
+            }
+            body {
+                background-image: url("../assets/img/R.jpeg"); /* Reemplaza 'ruta-de-la-imagen.jpg' con la ruta de tu imagen de fondo */
+                background-size: cover; /* Para asegurarte de que la imagen cubra toda la página */
+                background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+                background-attachment: fixed; /* Fija la imagen de fondo en su posición */
+            }
+            table {
+                background-color: rgba(255, 255, 255, 0.7); /* Fondo semi-transparente para que la tabla sea legible */
+                border-collapse: collapse;
+                margin: 0 auto;
+            }
+            th, td {
+                border: solid 2px black;
+                padding: 10px;
+            }
+            thead {
+                background-color: #2E86C1;
+                border-bottom: solid 5px #0F362D;
+                color: black;
+            }
+            #generar-reporte {
+                display: block;
+                margin: 10px auto;
+            }
+            #generar-reporte {
+                width: 200px;
+                height: 70px;
+                background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
+                border-style: none;
+                color: #fff;
+                font-size: 23px;
+                letter-spacing: 3px;
+                font-family: 'Lato';
+                font-weight: 600;
+                outline: none;
+                cursor: pointer;
+                position: relative;
+                padding: 0px;
+                overflow: hidden;
+                transition: all 0.5s;
+                box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+            }
+
+            #generar-reporte span {
+                border-bottom-left-radius: 1px;
+                border-bottom-right-radius: 1px;
+                animation: span2 2s linear infinite;
+                animation-delay: 2s;
+            }
+
+            #generar-reporte span:nth-child(3) {
+                height: 3px;
+                width: 200px;
+                right: -200px;
+                bottom: 0px;
+                background: linear-gradient(to left, rgba(0, 0, 0, 0), #f6e58d);
+                border-top-left-radius: 1px;
+                border-bottom-left-radius: 1px;
+                animation: span3 2s linear infinite;
+                animation-delay: 3s;
+            }
+
+            #generar-reporte span:nth-child(4) {
+                height: 70px;
+                width: 3px;
+                bottom: -70px;
+                left: 0px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0), #f6e58d);
+                border-top-right-radius: 1px;
+                border-top-left-radius: 1px;
+                animation: span4 2s linear infinite;
+                animation-delay: 4s;
+            }
+
+            #generar-reporte:hover {
+                transition: all 0.5s;
+                transform: rotate(-3deg) scale(1.1);
+                box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+            }
+
+            #generar-reporte:hover span {
+                animation-play-state: paused;
+            }
+           #regresar-button {
+    display: block;
+    margin: 10px auto;
+    width: 200px;
+    height: 70px;
+    background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
+    border-style: none;
+    color: #fff;
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Lato';
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all 0.5s;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#regresar-button span {
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+
+#regresar-button span:nth-child(3) {
+    height: 3px;
+    width: 200px;
+    right: -200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0), #f6e58d);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+
+#regresar-button span:nth-child(4) {
+    height: 70px;
+    width: 3px;
+    bottom: -70px;
+    left: 0px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inicio de Sesión</title>
+        <meta charset="UTF-8">
+        <link href="css/Login.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <form class="form">
+                <h1 class="title">Inicio de Sesión</h1>
+                <div class="inp">
+                    <input type="text" name="logiUsua" id="logiUsua" class="input" placeholder="Usuario">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="inp">
+                    <input type="password" name="passUsua" id="passUsua" class="input" placeholder="Contraseña">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <button type="button" class="btniniciar" id="btniniciar">Iniciar Sesión</button>
+                <p class="footer">¿No tienes una cuenta? <a href="Agregar.jsp" class="link">Regístrate</a></p>
+            </form>
+            <div></div>
+            <div class="banner">
+                <h1 class="wel_text">BIENVENIDO<br/></h1>
+            </div>
+        </div>
+        <audio autoplay>
+            <source src="Musica/SPOT NIGHT CLUB _ SPOT BAR _ VOZ_ ALBERTO MUÑOZ S..mp3" type="audio/mpeg">
+            Your browser does not support the <code>audio</code> tag.
+        </audio>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#btniniciar").click(function () {
+                    let usuario = $("#logiUsua").val();
+                    let clave = $("#passUsua").val();
+                    // Validar que los campos no estén vacíos
+                    if (usuario && clave) {
+                        let parametro = {usuario: usuario, clave: clave};
+                        $.getJSON("validar", parametro, function (data) {
+                            if (data.resultado === "ok") {
+                                $.getJSON("llamarClave", parametro, function (data) {
+                                    setCookie("clave", data.resultado, 1); // crea cookies
+                                });
+
+                                // Almacena el nombre de usuario en LocalStorage
+                                //llamo al servlet en getson
+                                $.getJSON("llamarToken", parametro, function (data) {
+                                    setCookie("token", data.resultado, 1); // Esta cookie expirará en 1 día
+                                    setCookie("usuario", usuario, 1);
+
+                                    console.log(usuario);
+                                    console.log(clave);
+                                    console.log(data.resultado);
+                                    console.log("cookie Creada");
+                                    const token = getCookie("token");
+                                    console.log(token);
+                                });
+
+                                localStorage.setItem('username', usuario);
+                                setTimeout(function () {
+                                    window.location.href = "Principal.html";
+                                }, 2000); // Redirige después de 15 segundos localStorage.setItem('username', usuario);
+                            } else {
+                                mostrarError("Error");
+                            }
+                        });
+                    } else {
+                        mostrarError("Por favor, complete todos los campos.");
+                    }
+                });
+            });
+            $("#cerrarSesionButton").click(function () {
+                // Elimina el nombre de usuario de LocalStorage
+                localStorage.removeItem('username');
+                // Redirige a la página de inicio de sesión
+                window.location.href = "index.html";
+            });
+            function mostrarError(mensaje) {
+                // Aquí puedes implementar una lógica para mostrar mensajes de error al usuario.
+                alert(mensaje);
+            }
+            function setCookie(name, value, diasExpiracion) {
+                const fechaExpiracion = new Date();
+                fechaExpiracion.setTime(fechaExpiracion.getTime() + (diasExpiracion * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + fechaExpiracion.toUTCString();
+                document.cookie = name + "=" + value + "; " + expires + "; path=/";
+            }
+
+            function getCookie(name) {
+                const nameEQ = name + "=";
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i];
+                    while (cookie.charAt(0) === ' ') {
+                        cookie = cookie.substring(1, cookie.length);
+                    }
+                    if (cookie.indexOf(nameEQ) === 0) {
+                        return cookie.substring(nameEQ.length, cookie.length);
+                    }
+                }
+                return null;
+            }
+
+        </script>
+    </body>
+</html>
