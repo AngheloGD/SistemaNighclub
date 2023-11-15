@@ -39,25 +39,14 @@ public class LlamarToken extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String clave = request.getParameter("clave");
             String claveMD5 = MD5.getMd5Hash(clave);
-            int tamaño = clave.length();
-            String usu = null;
 
             UsuarioJpaController usuDAO = new UsuarioJpaController();
-            switch (tamaño) {
-                case 32:
-                    usu = usuDAO.token(usuario, clave);
 
-                    break;
-                default:
-                    usu = usuDAO.token(usuario, claveMD5);
-                    break;
-            }
-            if (usu != null) {
-                // Inicia sesión y almacena el usuario en la sesión
-                //HttpSession session = request.getSession();
-                //session.setAttribute("usuarioLogueado", usu);
+            // Corregir la variable y el tipo de retorno del método token
+            String token = usuDAO.token(usuario, claveMD5);
 
-                out.print("{\"resultado\":\"" + usu + "\"}");
+            if (token != null) {
+                out.print("{\"resultado\":\"" + token + "\"}");
             } else {
                 out.print("{\"resultado\":\"error\"}");
             }
