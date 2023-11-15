@@ -7,6 +7,8 @@ package dao;
 import dao.exceptions.NonexistentEntityException;
 import dao.exceptions.PreexistingEntityException;
 import dto.Usuario;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -29,7 +31,7 @@ public class UsuarioJpaController implements Serializable {
 
     public UsuarioJpaController() {
     }
-    
+
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_SistemaNightclub_war_1.0-SNAPSHOTPU");
 
     public EntityManager getEntityManager() {
@@ -157,7 +159,8 @@ public class UsuarioJpaController implements Serializable {
             return null;
         }
     }
-      public String token(String usuario, String clave) {
+
+    public String token(String usuario, String clave) {
         EntityManager em = getEntityManager();
         try {
             Query q = em.createNamedQuery("Usuario.token");
@@ -169,7 +172,8 @@ public class UsuarioJpaController implements Serializable {
             return null;
         }
     }
-   public String clave(String usuario, String clave) {
+
+    public String clave(String usuario, String clave) {
         EntityManager em = getEntityManager();
         try {
             Query q = em.createNamedQuery("Usuario.clave");
@@ -181,6 +185,7 @@ public class UsuarioJpaController implements Serializable {
             return null;
         }
     }
+
     public static void main(String[] args) {
         UsuarioJpaController usuDao = new UsuarioJpaController();
         Usuario usu = usuDao.logueo("Anghelo", "1234");
@@ -213,4 +218,16 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
+    public String generarToken(String usuario) {
+        // Clave secreta para firmar el token 
+        String secretKey = "apruebenos";
+
+        // Genera el token
+        String token = Jwts.builder()
+                .setSubject(usuario)
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+
+        return token;
+    }
 }

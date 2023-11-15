@@ -42,11 +42,12 @@ public class LlamarToken extends HttpServlet {
 
             UsuarioJpaController usuDAO = new UsuarioJpaController();
 
-            // Corregir la variable y el tipo de retorno del método token
-            String token = usuDAO.token(usuario, claveMD5);
+            // Llama al método para generar el token
+            String token = usuDAO.generarToken(usuario);
 
             if (token != null) {
-                out.print("{\"resultado\":\"" + token + "\"}");
+                // Devuelve el token en el formato JSON
+                out.print("{\"resultado\":\"ok\",\"token\":\"" + token + "\"}");
             } else {
                 out.print("{\"resultado\":\"error\"}");
             }

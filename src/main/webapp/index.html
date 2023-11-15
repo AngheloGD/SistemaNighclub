@@ -29,6 +29,8 @@
             <source src="Musica/SPOT NIGHT CLUB _ SPOT BAR _ VOZ_ ALBERTO MUÑOZ S..mp3" type="audio/mpeg">
             Your browser does not support the <code>audio</code> tag.
         </audio>
+        <!-- Div para mostrar mensajes de error -->
+        <div id="mensajeError" style="color: red;"></div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jsonwebtoken@8.5.1"></script>
 
@@ -37,43 +39,67 @@
                 $("#btniniciar").click(function () {
                     let usuario = $("#logiUsua").val();
                     let clave = $("#passUsua").val();
+
                     // Validar que los campos no estén vacíos
                     if (usuario && clave) {
                         let parametro = {usuario: usuario, clave: clave};
-                        $.getJSON("validar", parametro, function (data) {
-                            if (data.resultado === "ok") {
-                                // Generar el token JWT en el cliente
-                                const token = jwt.sign({usuario: usuario}, 'apruebenos'); // Clave Secreta
 
-                                // Almacena el token en una cookie con HttpOnly y sin especificar días de expiración
-                                setCookie("token", token);
-                                console.log(usuario);
-                                console.log(clave);
-                                console.log(token);
-                                console.log("cookie Creada");
-                                // Redirige después de 2 segundos
-                                setTimeout(function () {
-                                    window.location.href = "Principal.html";
-                                }, 2000);
+                        // Hacer la solicitud al servlet LlamarToken
+                        $.getJSON("llamarToken", parametro, function (data) {
+                            if (data.resultado === "ok" && data.token) {
+                                // Almacena el token en una cookie
+                                document.cookie = "jwtToken=" + data.token + ";path=/;";
+
+                                // Verifica que la cookie se haya almacenado correctamente
+                                if (leerCookie("jwtToken")) {
+                                    // Redirige después de 15 segundos
+                                    setTimeout(function () {
+                                        window.location.href = "Principal.html";
+                                    }, 15000);
+                                } else {
+                                    // Muestra el mensaje de error en la interfaz de usuario
+                                    mostrarError("Error al almacenar el token");
+                                }
                             } else {
-                                mostrarError("Error");
+                                // Muestra el mensaje de error en la interfaz de usuario
+                                mostrarError("Error al autenticar");
                             }
-                        });
+                        })
+                                .fail(function (jqXHR, textStatus, errorThrown) {
+                                    // Muestra el mensaje de error en la interfaz de usuario
+                                    mostrarError("Error en la solicitud al servidor");
+                                });
                     } else {
+                        // Muestra el mensaje de error en la interfaz de usuario
                         mostrarError("Por favor, complete todos los campos.");
                     }
                 });
-                // ... (resto del código)cualqier cosa
-                // ... modificando el hola
-                function setCookie(name, value) {
-                    document.cookie = `${name}=${value}; path=/; HttpOnly; Secure`;
+                $("#cerrarSesionButton").click(function () {
+                    // Elimina el nombre de usuario de LocalStorage
+                    localStorage.removeItem('username');
+                    // Redirige a la página de inicio de sesión
+                    window.location.href = "index.html";
+                });
+
+                function mostrarError(mensaje) {
+                    // Muestra el mensaje de error en el div designado
+                    $("#mensajeError").text(mensaje);
                 }
 
-                function deleteCookie(name) {
-                    document.cookie = `${name}=; expires=Sun, 13 Nov 2023 22:00:00 UTC; path=/;`;
+                // Función para leer el valor de una cookies
+                function leerCookie(nombre) {
+                    let nombreEQ = nombre + "=";
+                    let cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = cookies[i];
+                        while (cookie.charAt(0) === ' ')
+                            cookie = cookie.substring(1, cookie.length);
+                        if (cookie.indexOf(nombreEQ) === 0)
+                            return cookie.substring(nombreEQ.length, cookie.length);
+                    }
+                    return null;
                 }
             });
-
         </script>
     </body>
 </html>
