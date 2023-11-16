@@ -222,7 +222,7 @@ public class UsuarioJpaController implements Serializable {
 
     public String generateJwtToken(String usuario, String claveMD5) {
         // Clave secreta para firmar el token
-        String secretKey = "lafedelcuto";//clave secreta :v
+        String secretKey = "lafedelcuto";//clave secreta la fe del gran cuto, ¡VAMOSSSSSSSSS PERU!!!!!! 
 
         // Crear el token JWT
         String token = Jwts.builder()
