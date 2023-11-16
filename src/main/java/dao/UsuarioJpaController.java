@@ -10,6 +10,7 @@ import dto.Usuario;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -217,17 +218,21 @@ public class UsuarioJpaController implements Serializable {
             return false;
         }
     }
+    // Método para generar un token JWT usando la biblioteca jjwt
 
-    public String generarToken(String usuario) {
-        // Clave secreta para firmar el token 
-        String secretKey = "apruebenos";
+    public String generateJwtToken(String usuario, String claveMD5) {
+        // Clave secreta para firmar el token
+        String secretKey = "lafedelcuto"; // Cambia esto por tu clave secreta
 
-        // Genera el token
+        // Crear el token JWT
         String token = Jwts.builder()
-                .setSubject(usuario)
-                .signWith(SignatureAlgorithm.HS256, secretKey)
-                .compact();
+                .setSubject(usuario) // Establecer el sujeto del token (en este caso, el usuario)
+                .signWith(SignatureAlgorithm.HS256, secretKey) // Firmar el token usando el algoritmo HMAC SHA-256 y la clave secreta
+                .setIssuedAt(new Date()) // Establecer la fecha de emisión del token (actual)
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // Establecer la fecha de expiración (1 día después de la emisión)
+                .compact(); // Compactar el token en una cadena
 
-        return token;
+        return token; // Devolver el token generado
     }
+
 }

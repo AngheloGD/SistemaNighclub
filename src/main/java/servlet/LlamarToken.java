@@ -35,26 +35,46 @@ public class LlamarToken extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            //llamo al token
+            // Obtiene los parámetros del usuario y la clave desde la solicitud HTTP
             String usuario = request.getParameter("usuario");
             String clave = request.getParameter("clave");
+
+            // Calcula el hash MD5 de la clave
             String claveMD5 = MD5.getMd5Hash(clave);
 
+            // Obtiene la longitud de la clave
+            int tamaño = clave.length();
+
+            // Inicializa una variable para almacenar el token
+            String token = null;
+
+            // Crea una instancia de UsuarioJpaController
             UsuarioJpaController usuDAO = new UsuarioJpaController();
 
-            // Llama al método para generar el token
-            String token = usuDAO.generarToken(usuario);
+            // Utiliza un switch para determinar qué lógica de generación de token aplicar
+            switch (tamaño) {
+                case 32:
+                    // Si la longitud de la clave es 32, utiliza la lógica existente para obtener un token
+                    token = usuDAO.token(usuario, clave);
+                    break;
+                default:
+                    // Si la longitud de la clave no es 32, utiliza la lógica de jjwt desde UsuarioJpaController
+                    token = usuDAO.generateJwtToken(usuario, claveMD5);
+                    break;
+            }
 
+            // Verifica si se generó un token
             if (token != null) {
-                // Devuelve el token en el formato JSON
-                out.print("{\"resultado\":\"ok\",\"token\":\"" + token + "\"}");
+                // Si se generó un token, imprime la respuesta JSON con el token
+                out.print("{\"resultado\":\"" + token + "\"}");
             } else {
+                // Si no se generó un token, imprime una respuesta de error en formato JSON
                 out.print("{\"resultado\":\"error\"}");
             }
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

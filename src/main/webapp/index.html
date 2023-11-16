@@ -39,67 +39,70 @@
                 $("#btniniciar").click(function () {
                     let usuario = $("#logiUsua").val();
                     let clave = $("#passUsua").val();
-
                     // Validar que los campos no estén vacíos
                     if (usuario && clave) {
                         let parametro = {usuario: usuario, clave: clave};
-
-                        // Hacer la solicitud al servlet LlamarToken
-                        $.getJSON("llamarToken", parametro, function (data) {
-                            if (data.resultado === "ok" && data.token) {
-                                // Almacena el token en una cookie
-                                document.cookie = "jwtToken=" + data.token + ";path=/;";
-
-                                // Verifica que la cookie se haya almacenado correctamente
-                                if (leerCookie("jwtToken")) {
-                                    //Redirige después de 15 segundos
-                                    setTimeout(function () {
-                                        window.location.href = "Principal.html";
-                                    }, 15000);
-                                } else {
-                                    // Muestra el mensaje de error en la interfaz de usuario
-                                    mostrarError("Error al almacenar el token");
-                                }
-                            } else {
-                                // Muestra el mensaje de error en la interfaz de usuario
-                                mostrarError("Error al autenticar");
-                            }
-                        })
-                                .fail(function (jqXHR, textStatus, errorThrown) {
-                                    // Muestra el mensaje de error en la interfaz de usuario
-                                    mostrarError("Error en la solicitud al servidor");
+                        $.getJSON("validar", parametro, function (data) {
+                            if (data.resultado === "ok") {
+                                $.getJSON("llamarClave", parametro, function (data) {
+                                    setCookie("clave", data.resultado, 1); // crea cookies
                                 });
+
+                                // Almacena el nombre de usuario en LocalStorage
+                                //llamo al servlet en getson
+                                $.getJSON("llamarToken", parametro, function (data) {
+                                    console.log("Token recibido:", data.resultado);
+                                    setCookie("token", data.resultado, 1);
+                                    setCookie("usuario", usuario, 1);
+                                    const token = getCookie("token");
+                                    console.log("Token almacenado en cookie:", token);
+                                });
+
+                                localStorage.setItem('username', usuario);
+                                setTimeout(function () {
+                                    window.location.href = "Principal.html";
+                                }, 30000); // Redirige después de 2 segundos localStorage.setItem('username', usuario);
+                            } else {
+                                mostrarError("Error");
+                            }
+                        });
                     } else {
-                        // Muestra el mensaje de error en la interfaz de usuario
                         mostrarError("Por favor, complete todos los campos.");
                     }
                 });
-                $("#cerrarSesionButton").click(function () {
-                    // Elimina el nombre de usuario de LocalStorage
-                    localStorage.removeItem('username');
-                    // Redirige a la página de inicio de sesión
-                    window.location.href = "index.html";
-                });
-
-                function mostrarError(mensaje) {
-                    // Muestra el mensaje de error en el div designado
-                    $("#mensajeError").text(mensaje);
-                }
-
-                // Función para leer el valor de una cookies
-                function leerCookie(nombre) {
-                    let nombreEQ = nombre + "=";
-                    let cookies = document.cookie.split(';');
-                    for (let i = 0; i < cookies.length; i++) {
-                        let cookie = cookies[i];
-                        while (cookie.charAt(0) === ' ')
-                            cookie = cookie.substring(1, cookie.length);
-                        if (cookie.indexOf(nombreEQ) === 0)
-                            return cookie.substring(nombreEQ.length, cookie.length);
-                    }
-                    return null;
-                }
             });
+            $("#cerrarSesionButton").click(function () {
+                // Elimina el nombre de usuario de LocalStorage
+                localStorage.removeItem('username');
+                // Redirige a la página de inicio de sesión
+                window.location.href = "index.html";
+            });
+            function mostrarError(mensaje) {
+                // Aquí puedes implementar una lógica para mostrar mensajes de error al usuario.
+                alert(mensaje);
+            }
+            function setCookie(name, value, diasExpiracion) {
+                const fechaExpiracion = new Date();
+                fechaExpiracion.setTime(fechaExpiracion.getTime() + (diasExpiracion * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + fechaExpiracion.toUTCString();
+                document.cookie = name + "=" + value + "; " + expires + "; path=/";
+            }
+
+            function getCookie(name) {
+                const nameEQ = name + "=";
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i];
+                    while (cookie.charAt(0) === ' ') {
+                        cookie = cookie.substring(1, cookie.length);
+                    }
+                    if (cookie.indexOf(nameEQ) === 0) {
+                        return cookie.substring(nameEQ.length, cookie.length);
+                    }
+                }
+                return null;
+            }
+
         </script>
     </body>
 </html>
