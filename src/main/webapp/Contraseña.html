@@ -5,7 +5,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-       
+
         <link href="Clave/css/main.css" rel="stylesheet" type="text/css"/>
         <link href="Clave/css/util.css" rel="stylesheet" type="text/css"/>
         <link href="Clave/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -16,7 +16,7 @@
         <link href="Clave/vendor/animate/animate.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
- 
+
         <div class="limiter">
             <div class="container-login100" style="background-image: url('Clave/images/bg-02.jpg');">
                 <div class="wrap-login100">
@@ -77,33 +77,46 @@
                     var nuevaClave = $('#nuevaClave').val();
                     var confirClave = $('#confirClave').val();
 
-                    // Enviar los datos al servlet
-                    $.post('clave', {
-                        passActual: passActual,
-                        nuevaClave: nuevaClave,
-                        confirClave: confirClave
-                    }, function (data) {
-                        // Procesar la respuesta del servlet
-                        var resultado = JSON.parse(data);
+                    // Obtener el token JWT de la cookie
+                    const token = getCookie("token");
+                    console.log(token);
 
-                        if (resultado.resultado === 'ok') {
-                            //comprueba si la cooikie esta
-                            const token = getCookie("token");
-                            console.log(token);
+                    // Enviar los datos al servlet junto con el token JWT
+                    $.ajax({
+                        url: 'clave',
+                        type: 'POST',
+                        data: {
+                            passActual: passActual,
+                            nuevaClave: nuevaClave,
+                            confirClave: confirClave
+                        },
+                        beforeSend: function (xhr) {
+                            // Agregar el token JWT en el encabezado de autorización
+                            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                        },
+                        success: function (data) {
+                            // Procesar la respuesta del servidor
+                            var resultado = JSON.parse(data);
 
-                            // Mostrar un mensaje de alerta
-                            alert('Cambio de contraseña exitoso');
-                            // Redireccionar a index.html
-                          setTimeout(function () {
+                            if (resultado.resultado === 'ok') {
+                                // Mostrar un mensaje de alerta
+                                alert('Cambio de contraseña exitoso');
+                                // Redireccionar a index.html después de un tiempo
+                                setTimeout(function () {
                                     window.location.href = "index.html";
                                 }, 20000);
-                        } else if (resultado.resultado === 'error') {
-                            $('#mensaje').text(resultado.mensaje);
+                            } else if (resultado.resultado === 'error') {
+                                $('#mensaje').text(resultado.mensaje);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            // Manejar errores de la solicitud
+                            console.error('Error en la solicitud:', error);
                         }
-
                     });
                 });
             });
+
             function getCookie(name) {
                 const nameEQ = name + "=";
                 const cookies = document.cookie.split(';');
