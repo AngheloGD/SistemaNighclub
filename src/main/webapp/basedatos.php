@@ -61,11 +61,10 @@ $conexion = mysqli_connect('localhost', 'root', '', 'nightclubb');
                 var pdf = new jsPDF();
                 pdf.autoTable({html: 'table'});
                 pdf.save("reporte.pdf");
-
             }
 
             // Definición de la variable parametrotoken
-            const PARAMETROTOKEN = "token_secreto";
+            const PARAMETROTOKEN = "lafedelcuto";
 
             $.getJSON("llamarToken", PARAMETROTOKEN, function (data) {
                 const token = getCookie("token");
