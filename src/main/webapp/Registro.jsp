@@ -52,7 +52,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
-                // Obtén el nombre de usuario logueado y muestra la información
+                obtenerInformacionTrabajadoras();
+
+                $("#btnGuardar").click(function () {
+                    eventoBtnGuardar();
+                });
+            });
+
+            function obtenerInformacionTrabajadoras() {
                 $.getJSON("ObTrab", function (data) {
                     if (data.length > 0) {
                         let trabajadoraSelect = $("#trabajadora");
@@ -66,48 +73,49 @@
                         alert("Error al obtener la lista de trabajadoras");
                     }
                 });
-                $("#btnGuardar").click(function () {
-                    let fecha = $("#fecha").val();
-                    let trabajador = $("#trabajadora").val();
-                    let servicio = $("#servicio").val();
-                    let usuarioLogueado = $("#usuarioInfo").text();
-                    if (fecha.trim() === "" || trabajador.trim() === "" || servicio.trim() === "") {
-                        alert("Por favor, complete todos los campos.");
-                        return;
-                    }
+            }
 
-                    let parametro1 = {
-                        fecha: fecha,
-                        trabajador: trabajador,
-                        servicio: servicio,
-                        usuario: usuarioLogueado
-                    };
-                    let parametrotoken = {usuario: getCookie("usuario"), clave: getCookie("clave")};
-                    $.getJSON("llamarToken", parametrotoken, function (data) {
-                        const token = getCookie("token");
-                        console.log("Token del Servidor: " + data.resultado);
-                        console.log(token);
-                        if (token === data.resultado) {
-                            $.getJSON("regiCita", parametro1, function (data) {
-                                if (data.resultado === "ok") {
-                                    console.log("Cita Guardada");
-                                    console.log(parametrotoken);
-                                    alert("Cita registrada con éxito.");
-                                    setTimeout(function () {
-                                        window.location.href = "Principal.html";
-                                    }, 20000);
-                                } else {
-                                    alert("Error al registrar Cita");
-                                }
-                            });
-                        } else {
-                            alert("Error al validar el token");
-                        }
-                    });
-
+            function eventoBtnGuardar() {
+                let fecha = $("#fecha").val();
+                let trabajador = $("#trabajadora").val();
+                let servicio = $("#servicio").val();
+                let usuarioLogueado = $("#usuarioInfo").text();
+                if (fecha.trim() === "" || trabajador.trim() === "" || servicio.trim() === "") {
+                    alert("Por favor, complete todos los campos.");
+                    return;
                 }
-                );
-            });
+
+                let parametro1 = {
+                    fecha: fecha,
+                    trabajador: trabajador,
+                    servicio: servicio,
+                    usuario: usuarioLogueado
+                };
+                //let parametrotoken = {usuario: getCookie("usuario"), clave: getCookie("clave")};
+                const token = getCookie("token");
+                let parametrotoken = {token: token};
+                $.getJSON("VerificarToken", parametrotoken, function (data) {
+                    console.log("Token del Servidor: " + data.resultado);
+                    console.log(token);
+                    if (token === data.resultado) {
+                        $.getJSON("regiCita", parametro1, function (data) {
+                            if (data.resultado === "ok") {
+                                console.log("Cita Guardada");
+                                console.log(parametrotoken);
+                                alert("Cita registrada con éxito.");
+                                setTimeout(function () {
+                                    window.location.href = "Principal.html";
+                                }, 20000);
+                            } else {
+                                alert("Error al registrar Cita");
+                            }
+                        });
+                    } else {
+                        alert("Error al validar el token");
+                    }
+                });
+            }
+
             function getCookie(name) {
                 const nameEQ = name + "=";
                 const cookies = document.cookie.split(';');

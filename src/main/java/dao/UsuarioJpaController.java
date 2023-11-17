@@ -9,6 +9,7 @@ import dao.exceptions.PreexistingEntityException;
 import dto.Usuario;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -235,4 +236,16 @@ public class UsuarioJpaController implements Serializable {
         return token; // Devolver el token generado
     }
 
+    public boolean verificarToken(String token) {
+        try {
+            String secretKey = "lafedelcuto";
+            // Verificar el token utilizando la clave secreta
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            // Si no se lanza ninguna excepción, el token es válido
+            return true;
+        } catch (SignatureException e) {
+            // Si hay una excepción al verificar el token, se considera inválido
+            return false;
+        }
+    }
 }
