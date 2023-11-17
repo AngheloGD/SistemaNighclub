@@ -54,7 +54,7 @@ public class LlamarToken extends HttpServlet {
             switch (tamaño) {
                 case 32:
                     // Si la longitud de la clave es 32, utiliza la lógica existente para obtener un token
-                    token = usuDAO.generateJwtToken(usuario, clave);
+                    token = usuDAO.token(usuario, clave);
                     break;
                 default:
                     // Si la longitud de la clave no es 32, utiliza la lógica de jjwt desde UsuarioJpaController
