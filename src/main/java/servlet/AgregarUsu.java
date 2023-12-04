@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import security.MD5;
-import security.AES;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import java.util.Date;
 
 /**
  *
@@ -23,6 +25,7 @@ import security.AES;
 @WebServlet(name = "AgregarUsu", urlPatterns = {"/agregarUsu"})
 public class AgregarUsu extends HttpServlet {
 //GAAAAAAAAAAAAAAAAAAAAAAAAA
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,13 +39,19 @@ public class AgregarUsu extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             String codiUsua = request.getParameter("codiUsua");
             String FechaUsuario = request.getParameter("FechaUsuario");
             String logiUsua = request.getParameter("logiUsua");
             String passUsua = request.getParameter("passUsua");
             String nombUsua = request.getParameter("nombUsua");
-            String token = AES.encrypt(logiUsua, FechaUsuario);
+
+            // Crear un token JWT
+            String token = Jwts.builder()
+                    .setSubject(logiUsua) // Puedes poner información adicional aquí si lo necesitas
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date(System.currentTimeMillis() + 864000000)) // 10 días de duración, puedes ajustar esto según tus necesidades
+                    .signWith(SignatureAlgorithm.HS256, "lafedecuto") // Reemplaza "tu_clave_secreta" con una clave secreta segura
+                    .compact();
 
             String claveMD5 = MD5.getMd5Hash(passUsua);
             Usuario nuevoUsuario = new Usuario();
