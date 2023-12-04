@@ -87,7 +87,7 @@ public class RegiCita extends HttpServlet {
                 }
                 emf.close();
             } else {
-                out.print("{\"resultado\":\"error\",\"mensaje\":\"Usuario no logueado\"}");
+                out.print("{\"resaultado\":\"error\",\"mensaje\":\"Usuario no logueado\"}");
             }
         }
     }
