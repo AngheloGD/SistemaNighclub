@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import Session.Sesion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author adria
+ * @author ANGHELO
  */
-@WebServlet(name = "RegistrarSession", urlPatterns = {"/registrarSession"})
-public class RegistrarSession extends HttpServlet {
+@WebServlet(name = "RegistrarSesion", urlPatterns = {"/registrarSesion"})
+public class RegistrarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +34,11 @@ public class RegistrarSession extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String codi=request.getParameter("codi");
-            String logi=request.getParameter("logi");
-            String nomb=request.getParameter("nomb");
-            String nive=request.getParameter("nive");
-            Sesion.crearsesion(request.getSession(true),Integer.parseInt(codi),
-                       logi, nomb,Integer.parseInt(nive));
+
+            String logiUsua = request.getParameter("logiUsua");
+            String passUsua = request.getParameter("passUsua");
+            Sesion.crearsesion(request.getSession(true),
+                    logiUsua, passUsua);
             out.print("{\"resultado\":\"ok\"}");
         }
     }

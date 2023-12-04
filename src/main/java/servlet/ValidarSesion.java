@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import Session.Sesion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,10 +16,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author adria
+ * @author ANGHELO
  */
-@WebServlet(name = "ValidarSession", urlPatterns = {"/validarSession"})
-public class ValidarSession extends HttpServlet {
+@WebServlet(name = "ValidarSesion", urlPatterns = {"/validarSesion"})
+public class ValidarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,34 +32,29 @@ public class ValidarSession extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            try{
-            HttpSession session = request.getSession(true);             
-            String logueado =session.getAttribute("logueado").toString();
-            String codi=session.getAttribute("codi").toString();
-            String logi=session.getAttribute("logi").toString();
-            String nombre=session.getAttribute("nombre").toString();
-            String nivel =session.getAttribute("nivel").toString();
-            if (logueado==null) {                               
-                out.println("{\"resultado\":\"error\"}");                
+        response.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            HttpSession session = request.getSession(true);
+            String logueado = (String) session.getAttribute("logueado");
+
+            if (logueado == null || !logueado.equals("1")) {
+                response.sendRedirect("index.html");
+                return;
             }
-            else{               
-                if(session.getAttribute("logueado").toString().equals("1")){
-                    out.println("{\"resultado\":\"ok\",\"codi\":\""+codi+"\",\"logi\":\""+logi+"\",\"nombre\":\""+nombre+"\",\"nivel\":\""+nivel+"\"}");                
-                }
-                else{
-                    out.println("{\"resultado\":\"error\"}");                
-                }
-            }}
-            catch(Exception ex){
-                        out.println("{\"resultado\":\"error\"}");                
-            }
+
+            String logiUsua = (String) session.getAttribute("logiUsua");
+            String passUsua = (String) session.getAttribute("passUsua");
+
+            // Si llegamos hasta aquí, la sesión es válida, puedes imprimir la respuesta JSON
+            out.println("{\"resultado\":\"ok\",\"logiUsua\":\"" + logiUsua + "\",\"logiUsua\":\"" + logiUsua + "\",\"passUsua\":\"" + passUsua + "\"}");
+        } catch (Exception ex) {
+            // Manejar excepciones y redirigir a index.html
+            response.sendRedirect("index.html");
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
