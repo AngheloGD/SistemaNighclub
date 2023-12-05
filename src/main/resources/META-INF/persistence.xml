@@ -5,6 +5,8 @@
     <class>dto.Empleado</class>
     <class>dto.Cita</class>
     <class>dto.Usuario</class>
+    <class>dto.Rolusuario</class>
+    <class>dto.Rol</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nightclubb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
