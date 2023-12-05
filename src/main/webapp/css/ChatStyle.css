@@ -1,0 +1,205 @@
+/* Estilos generales */
+/* Estilos generales */
+body {
+    font-family: 'Lemon', sans-serif;
+    background: url('../assets/img/fondochat.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center top; /* Ajusta la posición vertical de la imagen */
+    margin: 0;
+    height: 100%;
+}
+
+h2 {
+    font-family: 'Brush Script MT', sans-serif;
+    font-size: 60px;
+    color: #FF3366;
+    text-align: center;
+    margin-top: 20px;
+    animation: scaleEffect 3s ease-in-out infinite; /* Animación de agrandar y achicar */
+    margin-right:  300px;
+}
+
+@keyframes scaleEffect {
+    0%, 100% {
+        transform: scale(1); /* Escala normal al inicio y al final */
+    }
+    50% {
+        transform: scale(1.2); /* Escala más grande a la mitad de la animación */
+    }
+}
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    margin: 5px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+input[type="button"] {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+#chatRoomField {
+    width: 80%;
+    max-height: 320px;
+    overflow-y: auto;
+    margin-top: 10px;
+    box-shadow: 0 0 10px 5px #ff0000; /* Estilo del resplandor rojo */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Estilos para las burbujas de chat */
+.chat-message {
+    max-width: 70%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    clear: both;
+    position: relative;
+    overflow: hidden; /* Oculta el contenido que sobresale */
+}
+
+.chat-message::before {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+
+    background-size: cover;
+}
+
+/* Estilos para las burbujas de chat del usuario actual */
+.chat-message.me {
+    background-color: #ff0000;
+    color: white;
+    float: right;
+}
+
+/* Estilos para las burbujas de chat de otros usuarios */
+.chat-message.other {
+    background-color: #ddd;
+    float: left;
+}
+
+/* Nueva clase para el contenido dentro de la burbuja */
+.chat-message-content {
+    overflow: hidden;
+    word-wrap: break-word; /* Permite dividir palabras largas para que encajen en el contenedor */
+}
+
+input[type="text"]#sendField {
+    width: 500px;
+    padding: 8px;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el botón Ir a la página principal */
+button.red {
+    font-family: 'Lemon', sans-serif;
+    color: white; /* Cambiado a color blanco */
+    text-shadow: 0 1px #d9f3b5;
+    background: linear-gradient(to right, #ff0000, #dc143c); /* Cambiado a rojo pasión */
+    border-color: darkgoldenrod;
+    border-radius: 2em;
+    width: 250px;
+    height: calc(250px / 3);
+    text-align: center;
+    line-height: calc(250px / 3);
+    font-size: calc(200px / 10);
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: 0.5s;
+    position: relative;
+    overflow: hidden;
+}
+
+button.red:hover {
+    transform: perspective(500px) rotateY(15deg);
+    text-shadow: -6px 3px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button.red::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, white, transparent);
+    left: -100%;
+    transition: 0.5s;
+}
+
+button.red:hover::before {
+    left: 100%;
+}
+
+.button {
+    margin-right: 10px;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center-container {
+    text-align: right;
+    flex-grow: 1;
+}
+
+
+/* Nueva clase para la imagen del bailarín */
+.dancer-image {
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+    background: url('../assets/img/bailarina.gif') no-repeat;
+    background-size: cover;
+}
+.loading-image {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: url('../assets/img/cargando.gif') no-repeat;
+    background-size: contain;
+    display: none;
+}
+
+/* Agregamos una clase para la animación de desvanecer */
+.fade-in {
+    animation: fadeIn 2s ease-in-out; /* Duración de 2 segundos */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.hidden {
+    display: none;
+}

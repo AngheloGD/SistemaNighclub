@@ -1,0 +1,54 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 27 oct 2023, 18:10:40
+    Author     : ANGHELO
+*/
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("../assets/img/FONDO.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh; /* Establece un alto mínimo del 100% de la ventana */
+        }
+
+        header {
+            background-color: #FF3366;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #FF3366;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+/* ... (estilos anteriores) */
+
+footer {
+    background-color: #FF3366; /* Cambia el color de fondo del pie de página */
+    color: #fff; /* Cambia el color del texto del pie de página a blanco */
+    text-align: center;
+    padding: 20px 0;
+}

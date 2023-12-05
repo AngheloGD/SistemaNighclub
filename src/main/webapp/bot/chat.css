@@ -1,0 +1,136 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21 nov 2023, 2:05:59
+    Author     : ANGHELO
+*/
+
+/* Estilo para el cuerpo de la página */
+/*body {
+    font-family: 'Arial', sans-serif;  Tipo de fuente 
+    background-color: #f4f4f4;  Color de fondo gris claro 
+    margin: 0;  Elimina los márgenes predeterminados 
+    padding: 0;  Elimina el relleno predeterminado 
+    display: flex;  Utiliza el modelo de caja flexible 
+    align-items: center;  Alinea los elementos verticalmente en el centro 
+    justify-content: center;  Alinea los elementos horizontalmente en el centro 
+    height: 100vh;  100% del alto de la ventana 
+}*/
+
+/* Estilo para el botón de abrir el chat
+#openChatBtn {
+    position: fixed;  Posición fija en la ventana del navegador 
+    bottom: 20px;  Distancia desde la parte inferior 
+    right: 20px;  Distancia desde la parte derecha 
+    padding: 10px;
+    background-color: captiontext;  Color de fondo verde 
+    color: #fff;  Color del texto blanco 
+    border: none;  Sin borde 
+    border-radius: 5px;  Bordes redondeados 
+    cursor: pointer;  Cambia el cursor al pasar sobre él 
+}*/
+#openChatBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px; /* Tamaño de fuente más grande */
+    color: #ddd; /* Letra blanca */
+    margin: -12px 0px 0; /* 10px arriba, 10px a los lados, 0 abajo */
+    outline: none;
+    text-decoration: none; /* Sin subrayado */
+}
+
+
+
+
+/* Estilos para el contenedor del chat */
+#chat-container {
+    position: fixed; /* Posición fija en la ventana del navegador */
+    bottom: 0; /* Alineado en la parte inferior */
+    right: 15px; /* Alineado en la parte derecha */
+    width: 370px; /* Ancho del contenedor */
+    height: 500px; /* Altura del contenedor */
+    border: 1px solid #ddd; /* Borde delgadp gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta el desbordamiento del contenido */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    background-color: #fff; /* Fondo blanco */
+    display: none; /* Inicialmente oculto */
+    flex-direction: column; /* Alineación vertical de los elementos internos */
+}
+
+/* Estilos para el área del chat */
+#chatbox {
+    flex: 1; /* Ocupa el espacio restante dentro del contenedor */
+    overflow-y: auto; /* Desplazamiento vertical si hay más contenido */
+    padding: 10px;
+    max-width: 100%; /* Establece el ancho máximo del área del chat al 100% del contenedor */
+    overflow-wrap: break-word; /* Rompe las palabras para evitar que se desborden fuera del área del chat */
+}
+
+
+/* Estilos para el campo de entrada del usuario */
+#userInput {
+    width: calc(100% - 20px); /* Ancho del 100% menos el espacio de los márgenes */
+    padding: 8px;
+    border: none;
+    border-top: 1px solid #ddd; /* Borde superior gris claro */
+    box-sizing: border-box; /* Incluye el relleno y el borde en el tamaño total */
+    outline: none; /* Elimina el contorno predeterminado al hacer clic */
+    margin: 10px; /* Márgenes internos */
+    word-wrap: break-word; /* Rompe las palabras para evitar que se desborden fuera de la caja de texto */
+}
+
+/* Estilos para el mensaje de estilo similar a Messenger */
+.messenger-message {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+}
+/* Nueva regla de estilo para la clase chat-header */
+.chat-header {
+    display: flex;
+    justify-content: space-between; /* Para colocar los elementos a los lados opuestos */
+    align-items: center;
+    padding: 10px; /* Añadido un relleno para mejorar el aspecto visual */
+    border-bottom: 1px solid #ddd; /* Borde inferior para separar la cabecera del contenido */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.puppy {
+    width: 100%;
+    height: auto;
+    animation: fadeInOut 4s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+    }
+}
+

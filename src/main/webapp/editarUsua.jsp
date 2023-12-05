@@ -9,6 +9,35 @@
 <%@ page import="javax.persistence.Persistence" %>
 <%@ page import="java.io.PrintWriter" %>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function verificarSesion() {
+        $.ajax({
+            url: 'validarSesion',
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (response.resultado === "ok") {
+                    //$("#usernameSpan").text(response.logiUsua);
+                } else {
+                    // El usuario no está autenticado, redirigir a index.html
+                    console.log("Redirigiendo a index.html");
+                    window.location.href = "index.html";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error: " + textStatus + ", " + errorThrown);
+                // Si ocurre un error, redirigir a index.html
+                window.location.href = "index.html";
+            }
+        });
+    }
+    $(document).ready(function () {
+        verificarSesion();
+    });
+</script>
+
+
 <%
     String codigo = request.getParameter("codigo");
     if (codigo != null) {

@@ -15,6 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+              integrity="sha384-wvfXpqpZZVQGK6TAh5n0/2xXSvrM9M9sH5hZvLpzfNlAYBMwULFqNS2tMP+J5SZ6" crossorigin="anonymous">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -22,18 +24,22 @@
             <div class="container">
                 <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
+                    Menu                    
                     <i class="fas fa-bars ms-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="http://localhost/SistemaNightclub/src/main/webapp/basedatos.php">Reporte Cita</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Reporte.jsp">Reporte Cita</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="acerca.html">Acerca de Nosotros</a></li>-->
                         <!--<li class="nav-item"><a class="nav-link" href="Contraseña.html">Cambiar Contraseña</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="Registro.jsp">Separar una cita</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="listado.jsp">Vista de Usuarios</a></li>-->
                         <!-- <li class="nav-item"><a class="nav-link" href="trabaja.html">Trabaja con nosotros</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="Informacion.html">Las Cariñosas</a></li>
+
+                        <button id="openChatBtn">AYUDA</button>
+
+
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,10 +61,11 @@
                                     Cambiar contraseña
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="index.html">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Cerrar Sesion
-                                    </a>
+                                <button id="salir" class="dropdown-item" >
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar Sesión
+                                </button>
+
                             </div>
                         </li>
                     </ul>
@@ -76,8 +83,7 @@
                  <a class="btn btn-primary btn-xl text-uppercase" href="registro.html">Registrarme</a>-->
             </div>
         </header>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
+        <!--<script>
             $(document).ready(function () {
                 // Obtener el nombre de usuario almacenado en LocalStorage mas na
                 var username = localStorage.getItem('username');
@@ -88,7 +94,7 @@
                     $("#usernameSpan").text(username);
                 }
             });
-        </script>
+        </script>-->
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
@@ -138,9 +144,9 @@
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>23/10/2023</h4>
-                                <h4 class="subheading">PUPILOS DE LORD CHINGA</h4>
+                                <h4 class="subheading">Alumnos del Ingeniero Carlos Chinga</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Bueno este proyecto llega Gracias a chaky, dire al INGENIERO CHINGAGOD, que Gracias a el le ofrecemos un servicio 100% disfrutable</p></div>
+                            <div class="timeline-body"><p class="text-muted">Bueno este proyecto llega Gracias al INGENIERO CHINGA, Gracias por su buena enseñanza </p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -198,7 +204,7 @@
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/Guerrero.jpg" alt="..." />
                             <h4>Guerrero Diaz, Anghelo</h4>
-                            <p class="text-muted">La bebe sensible</p>
+                            <p class="text-muted">Chino</p>
                             <!--<a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/AngheloGD" aria-label="Guerrero Diaz Facebook"><i class="fab fa-twitter"></i></a>-->
                             <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/AngheloGD" aria-label="Guerrero Diaz Facebook"><i class="fab fa-facebook-f"></i></a>
                             <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
@@ -214,57 +220,20 @@
                             <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
                         </div>
                     </div> 
+
+   
+
                     <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Lino Morales, Alonso</h4>
-                            <p class="text-muted">La beba 3</p>
-                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Jesus Prieto</h4>
-                            <p class="text-muted">La beba 7</p>
+                            <h4>Brayan Perez</h4>
+                            <p class="text-muted">La canina </p>
                             <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                             <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Brayan</h4>
-                            <p class="text-muted">El macho del grupo</p>
-                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Adrian Chavez</h4>
-                            <p class="text-muted">La beba 6</p>
-                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Erik Ramos</h4>
-                            <p class="text-muted">Muchachos agregué mi apellido acá</p>
-                            <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>-->
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <!--<a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>-->
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Bueno este trabajo fue hecho con sudor, sangre y horas sin dormir.</p></div>
@@ -276,14 +245,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Ingenieria &copy; Equipo de Cripto II 2023</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+
                     <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="Politicas.html">Privacy Policy</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                        <a class="link-dark text-decoration-none me-3" href="Politicas.html">Privacidad y politicas</a>
+
                     </div>
                 </div>
             </div>
@@ -298,5 +263,202 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function verificarSesion() {
+                $.ajax({
+                    url: 'validarSesion',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.resultado === "ok") {
+                            //$("#usernameSpan").text(response.logiUsua);
+                        } else {
+                            // El usuario no está autenticado, redirigir a index.html
+                            console.log("Redirigiendo a index.html");
+                            window.location.href = "index.html";
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Error: " + textStatus + ", " + errorThrown);
+                        // Si ocurre un error, redirigir a index.html
+                        window.location.href = "index.html";
+                    }
+                });
+            }
+
+            function cerrarSesion(redirectURL) {
+                $.getJSON("cerrarSession", function (data) {
+                    // Redirige a la URL de redirección especificada (o a "index.html" por defecto)
+                    if (redirectURL) {
+                        window.location.replace(redirectURL);
+                    } else {
+                        window.location.replace("index.html");
+                    }
+                })
+                        .fail(function () {
+                            console.error("Error al cerrar sesión");
+                            // Si ocurre un error al cerrar sesión, redirige a index.html de todos modos
+                            window.location.replace("index.html");
+                        });
+            }
+
+            $(document).ready(function () {
+                verificarSesion();
+                $("#salir").click(function () {
+                    cerrarSesion();
+                });
+            });
+        </script>
+        <link href="bot/chat.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Contenedor del chat y del perrito -->
+        <div id="chat-container" style="display: none;">
+            <!-- Encabezado del chat con botones para minimizar y cerrar -->
+            <div class="chat-header">
+                <div>
+                    <span id="loggedInUsername"></span> <!-- Nuevo elemento para mostrar el nombre del usuario -->
+                </div>
+                <div>
+                    <button onclick="closeChat()" style="background: none; border: none; cursor: pointer;">
+                        <img src="bot/cerca.png" alt="Cerrar" width="20">
+                    </button>
+                </div>
+            </div>
+            <audio id="welcomeAudio">
+                <source src="bot/bot.mp3" type="audio/mpeg">
+                Your browser does not support the <code>audio</code> tag.
+            </audio>
+            <!-- Área del chat -->
+            <div id="chatbox"></div>
+            <!-- Campo de entrada del usuario y botón de enviar -->
+            <div style="display: flex; align-items: center;">
+                <input type="text" id="userInput" placeholder="Escribe tu mensaje..."
+                       style="flex: 1; padding: 8px; border: none; border-top: 1px solid #ddd; box-sizing: border-box; outline: none; margin: 10px;"
+                       onkeydown="if (event.keyCode == 13)
+                                   sendMessage();">
+                <button id="sendBtn" onclick="sendMessage()"
+                        style="background: none; border: none; cursor: pointer;">
+                    <img src="bot/enviar-mensaje.png" alt="Enviar mensaje" width="20">
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor del perrito y audio -->
+        <div id="puppyContainer" class="overlay" style="display: none;">
+            <img id="puppy" class="puppy" src="css/vlu.gif" alt="Perrito en movimiento">
+            <audio id="welcomeAudio">
+                <source src="bot/bot.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <!-- Botón para abrir el chat y mostrar el perrito con música 
+    <button id="openChatBtn">Abrir Chat</button>-->
+
+        <!-- Tu código JavaScript -->
+        <script>
+            var chatContainer = document.getElementById('chat-container');
+            var openChatBtn = document.getElementById('openChatBtn');
+            var loggedInUsernameSpan = document.getElementById('loggedInUsername'); // Nuevo elemento
+
+            var chatOpened = false;
+            openChatBtn.addEventListener('click', function () {
+                if (!chatOpened) {
+                    showPuppyAndPlayAudio(); // Mostrar perrito y reproducir audio al abrir el chat
+                    chatOpened = true;
+                    // Deshabilitar el botón temporalmente por, por ejemplo, 5 segundos
+                    openChatBtn.disabled = true;
+                    setTimeout(function () {
+                        openChatBtn.disabled = false;
+                    }, 5000);
+                }
+            });
+            // Función para actualizar el nombre del usuario logueado
+            function updateLoggedInUsername() {
+                var username = localStorage.getItem('username');
+                loggedInUsernameSpan.textContent = username || ''; // Mostrar el nombre o dejar en blanco si no hay nombre
+            }
+
+            // Llamada inicial para mostrar el nombre del usuario si ya está logueado
+            updateLoggedInUsername();
+            function minimizeChat() {
+                chatContainer.style.display = 'none'; // Oculta el chat pero mantiene la visibilidad
+            }
+
+            function closeChat() {
+                chatContainer.style.display = 'none'; // Oculta y borra el chat
+            }
+
+            function sendMessage() {
+                var userInput = document.getElementById('userInput').value;
+                var chatbox = document.getElementById('chatbox');
+                // Mostrar el mensaje del usuario en el chatbox
+                chatbox.innerHTML += '<p><strong>Tú:</strong> ' + userInput + '</p>';
+                // Simular respuestas del chatbot según la opción elegida por el usuario
+                if (userInput === '1') {
+                    chatbox.innerHTML += '<p><strong>Chatbot:</strong> Hola, si claro en nuestra pagina en los encabezados dice separar cita, seleccione su tipo de servicio y la trabajadora que desea.. ¡Provecho! :)</p>';
+                } else if (userInput === '2') {
+                    chatbox.innerHTML += '<p><strong>Chatbot:</strong> Hola, si claro en nuestra pagina en los encabezados existe "Las cariñosa", de clic allí para ver la información de las trabajadoras..</p>';
+                } else if (userInput === '3') {
+                    chatbox.innerHTML += '<p><strong>Chatbot:</strong> Puedes realizar cambios en tu pedido contactando a nuestro servicio al cliente.</p>';
+                } else {
+                    // Respuesta genérica si no se reconoce la opción
+                    chatbox.innerHTML += '<p><strong>Chatbot:</strong> No entiendo. ¿Puedes elegir una opción válida?</p>';
+                    // Enlace para comunicarse con el administrador
+                    chatbox.innerHTML += '<p><strong>Chatbot:</strong> Si no estás conforme con las respuestas, comunícate directamente con el administrador. <a href="chat.jsp">Haz clic aquí</a></p>';
+                }
+
+                // Limpiar el campo de entrada
+                document.getElementById('userInput').value = '';
+                // Hacer scroll hacia abajo para mostrar el último mensaje
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }
+
+            function showPuppyAndPlayAudio() {
+                var puppyContainer = document.getElementById('puppyContainer');
+                var welcomeAudio = document.getElementById('welcomeAudio');
+                var chatbox = document.getElementById('chatbox');
+                var loggedInUsernameSpan = document.getElementById('loggedInUsername');
+                // Obtener la hora actual
+                var currentHour = new Date().getHours();
+                // Definir el saludo basado en la hora del día
+                var greeting = "";
+                if (currentHour >= 5 && currentHour < 12) {
+                    greeting = "¡Buenos días!";
+                } else if (currentHour >= 12 && currentHour < 18) {
+                    greeting = "¡Buenas tardes!";
+                } else {
+                    greeting = "¡Buenas noches!";
+                }
+
+                // Agregar el nombre de usuario al saludo
+                updateLoggedInUsername(); // Actualizar el nombre del usuario antes de mostrar el saludo
+
+                // Reproducir el audio
+                welcomeAudio.play();
+                // Mostrar el saludo con el nombre del usuario en el chatbox
+                chatbox.innerHTML += '<p><strong>Chatbot:</strong> ' + greeting + ' ' +
+                        (loggedInUsernameSpan.textContent ? loggedInUsernameSpan.textContent + ', ' : '') +
+                        '¿En qué puedo ayudarte hoy?</p>';
+                // Preguntas
+                chatbox.innerHTML += '<p><strong>Chatbot:</strong> 1. ¿Cómo puedo sacar una cita con las caninas?</p>';
+                chatbox.innerHTML += '<p><strong>Chatbot:</strong> 2. ¿Como puedo ver las trabajadoras del sistema?</p>';
+                chatbox.innerHTML += '<p><strong>Chatbot:</strong> 3. ¿Puedo realizar un cambio de trabajadora luego de separar la cita?</p>';
+                // Mostrar la imagen del perrito
+                puppyContainer.style.display = 'flex';
+                // Ocultar el gif después de 4 segundos (4000 milisegundos)
+                setTimeout(function () {
+                    hidePuppy();
+                    chatContainer.style.display = 'flex'; // Mostrar el chat después de la animación del gif
+                }, 4000);
+            }
+
+            function hidePuppy() {
+                var puppyContainer = document.getElementById('puppyContainer');
+                // Oculta la imagen del perrito
+                puppyContainer.style.display = 'none';
+            }
+        </script>
+
     </body>
 </html>

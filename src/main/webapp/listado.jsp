@@ -9,6 +9,34 @@
 <%@ page import="dao.UsuarioJpaController" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <link href="css/crub.css" rel="stylesheet" type="text/css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function verificarSesion() {
+        $.ajax({
+            url: 'validarSesion',
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (response.resultado === "ok") {
+                    //$("#usernameSpan").text(response.logiUsua);
+                } else {
+                    // El usuario no está autenticado, redirigir a index.html
+                    console.log("Redirigiendo a index.html");
+                    window.location.href = "index.html";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error: " + textStatus + ", " + errorThrown);
+                // Si ocurre un error, redirigir a index.html
+                window.location.href = "index.html";
+            }
+        });
+    }
+    $(document).ready(function () {
+        verificarSesion();
+    });
+</script>
+
 
 <%
     // Recupera la lista de usuarios de la base de datos
@@ -51,10 +79,10 @@
                 <td><%= usuario.getCodiUsua()%></td>
                 <td><%= usuario.getLogiUsua()%></td>
                 <td><%= usuario.getNombUsua()%></td>
-              <td>
-                <a href="editarUsua.jsp?codigo=<%= usuario.getCodiUsua()%>">Editar</a>
-                <a href="eliminarUsua.jsp?codigo=<%= usuario.getCodiUsua()%>">Eliminar</a>
-            </td>
+                <td>
+                    <a href="editarUsua.jsp?codigo=<%= usuario.getCodiUsua()%>">Editar</a>
+                    <a href="eliminarUsua.jsp?codigo=<%= usuario.getCodiUsua()%>">Eliminar</a>
+                </td>
             </tr>
             <%
                 }

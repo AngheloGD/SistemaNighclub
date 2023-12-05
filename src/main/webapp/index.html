@@ -4,6 +4,7 @@
         <title>Inicio de Sesión</title>
         <meta charset="UTF-8">
         <link href="css/Login.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="data:image/x-icon;,">
     </head>
     <body>
         <div class="wrapper">
@@ -32,8 +33,7 @@
         <!-- Div para mostrar mensajes de error por favorr-->
         <div id="mensajeError" style="color: red;"></div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jsonwebtoken@8.5.1"></script>
-
+        <!-- Eliminé la importación innecesaria del paquete jsonwebtoken -->
         <script>
             $(document).ready(function () {
                 $("#btniniciar").click(function () {
@@ -42,26 +42,29 @@
                     // Validar que los campos no estén vacíos
                     if (usuario && clave) {
                         let parametro = {usuario: usuario, clave: clave};
-                        $.getJSON("validar", parametro, function (data) {
-                            if (data.resultado === "ok") {
-                                $.getJSON("llamarClave", parametro, function (data) {
+                         $.getJSON("llamarClave", parametro, function (data) {
                                     setCookie("clave", data.resultado, 1); // crea cookies
                                 });
-
                                 // Almacena el nombre de usuario en LocalStorage
-                                //llamo al servlet en getson
+                                // Llamo al servlet en getson
                                 $.getJSON("llamarToken", parametro, function (data) {
                                     console.log("Token recibido:", data.resultado);
                                     setCookie("token", data.resultado, 1);
                                     setCookie("usuario", usuario, 1);
                                     const token = getCookie("token");
                                     console.log("Token almacenado en cookie:", token);
+                                    localStorage.setItem('username', usuario);
+                                    //setTimeout(function () {
+                                        //window.location.href = "Principal.html";
+                                    //}, 2000); // Redirige después de 30 segundos
                                 });
-
-                                localStorage.setItem('username', usuario);
-                                setTimeout(function () {
-                                    window.location.href = "Principal.html";
-                                }, 30000); // Redirige después de 2 segundos localStorage.setItem('username', usuario);
+                        $.getJSON("validar", parametro, function (data) {
+                            if (data.resultado === "ok") {
+                                $.getJSON("registrarSesion", {logiUsua: data.logiUsua,
+                                    passUsua: data.passUsua}, function (data) {
+                                    $(location).attr('href', "Principal.html");
+                                });
+                               
                             } else {
                                 mostrarError("Error");
                             }
@@ -70,40 +73,36 @@
                         mostrarError("Por favor, complete todos los campos.");
                     }
                 });
-            });
-            $("#cerrarSesionButton").click(function () {
-                // Elimina el nombre de usuario de LocalStorage
-                localStorage.removeItem('username');
-                // Redirige a la página de inicio de sesión
-                window.location.href = "index.html";
-            });
-            function mostrarError(mensaje) {
-                // Aquí puedes implementar una lógica para mostrar mensajes de error al usuario.
-                alert(mensaje);
-            }
-            function setCookie(name, value, diasExpiracion) {
-                const fechaExpiracion = new Date();
-                fechaExpiracion.setTime(fechaExpiracion.getTime() + (diasExpiracion * 24 * 60 * 60 * 1000));
-                const expires = "expires=" + fechaExpiracion.toUTCString();
-                document.cookie = name + "=" + value + "; " + expires + "; path=/";
-            }
+              
 
-            function getCookie(name) {
-                const nameEQ = name + "=";
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    let cookie = cookies[i];
-                    while (cookie.charAt(0) === ' ') {
-                        cookie = cookie.substring(1, cookie.length);
-                    }
-                    if (cookie.indexOf(nameEQ) === 0) {
-                        return cookie.substring(nameEQ.length, cookie.length);
-                    }
+                function mostrarError(mensaje) {
+                    // Aquí puedes implementar una lógica para mostrar mensajes de error al usuario.
+                    alert(mensaje);
                 }
-                return null;
-            }
 
+                function setCookie(name, value, diasExpiracion) {
+                    const fechaExpiracion = new Date();
+                    fechaExpiracion.setTime(fechaExpiracion.getTime() + (diasExpiracion * 24 * 60 * 60 * 1000));
+                    const expires = "expires=" + fechaExpiracion.toUTCString();
+                    document.cookie = name + "=" + value + "; " + expires + "; path=/";
+                }
+
+                function getCookie(name) {
+                    const nameEQ = name + "=";
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = cookies[i];
+                        while (cookie.charAt(0) === ' ') {
+                            cookie = cookie.substring(1, cookie.length);
+                        }
+                        if (cookie.indexOf(nameEQ) === 0) {
+                            return cookie.substring(nameEQ.length, cookie.length);
+                        }
+                    }
+                    return null;
+                }
+            });
         </script>
     </body>
-</html>
 
+</html>
