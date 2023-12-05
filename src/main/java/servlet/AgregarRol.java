@@ -20,6 +20,7 @@ public class AgregarRol extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombreRol = request.getParameter("nombre");
+        
 
         // Crear un nuevo objeto Rol con el nombre ingresado
         Rol nuevoRol = new Rol();
@@ -34,6 +35,6 @@ public class AgregarRol extends HttpServlet {
         }
 
         // Redireccionar de vuelta a la página de roles
-        response.sendRedirect("informacionRoles.jsp");
+        response.sendRedirect("Roles.jsp");
     }
 }
