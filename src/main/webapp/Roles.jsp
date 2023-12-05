@@ -39,6 +39,8 @@
     <body>
         <h1>Información de Roles</h1><br>
         <a href="Principal.html" class="btn btn-primary">Regresar</a>
+        <br/><!-- comment -->
+        <a href="AgregarRol.jsp" class="btn btn-primary">Agregar Rol</a>
         <table>
             <tr>
                 <th>Código de Rol</th>

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author adria
  */
-@WebServlet("/AgregarRolServlet")
+@WebServlet("/agregarRol")
 public class AgregarRol extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
