@@ -3,7 +3,7 @@ var username;  // Almacena el nombre de usuario actual
 var chatRoomField = document.getElementById("chatRoomField");  // Referencia al elemento del campo de chat en el DOM
 var sendField = document.getElementById("sendField");  // Referencia al elemento del campo de envío en el DOM
 var sendButton = document.getElementById("sendButton");  // Referencia al botón de envío en el DOM
-var websocket = new WebSocket("ws://192.168.1.43:8080/SistemaNightclub/chatroom");  // Creación de un objeto WebSocket para la comunicación
+var websocket = new WebSocket("ws://192.168.56.1:8080/SistemaNightclub/chatroom");  // Creación de un objeto WebSocket para la comunicación
 var aesKey;  // Almacena la clave AES para cifrar y descifrar mensajes
 
 // Función para generar una clave AES (solo con fines demostrativos)
